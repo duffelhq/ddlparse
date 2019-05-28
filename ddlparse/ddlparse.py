@@ -203,15 +203,7 @@ class DdlParseColumn(DdlParseTableColumnBase):
                         return bq_type
 
         if self._data_type in ["NUMERIC", "NUMBER", "DECIMAL"]:
-            if self._scale is not None:
-                return "FLOAT"
-
-            if self._data_type == "NUMBER" \
-                and self._source_database == self.DATABASE.oracle \
-                and self._length is None:
-                return "FLOAT"
-
-            return "INTEGER"
+            return "FLOAT"
 
         raise ValueError("Unknown data type : '{}'".format(self._data_type))
 
